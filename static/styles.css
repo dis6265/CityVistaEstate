@@ -1,0 +1,22 @@
+body {
+   background-image: url("../image/istockphoto-1256263980-170667a.jpg ");
+   background-size:cover ;
+   background-repeat: no-repeat;
+   background-attachment:fixed;
+   position: fixed;
+   
+}
+
+main .card-footer button{
+   background-color: brown;
+   border-color:wheat ;
+}
+main .card-footer button:hover{
+   background-color: wheat;
+   color: brown;
+   border-color:brown ;
+
+}
+main .card-header h5{
+   color: brown;
+}
