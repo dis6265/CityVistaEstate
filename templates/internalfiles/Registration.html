@@ -37,7 +37,8 @@
         </div> 
     </nav>
 
-    <form class="border border-2 bg-dark text-white rounded border-dark p-3 w-25 h-75 justify-content-center align-items-center" style="margin-top: 7rem;">
+    <form  method="post" class="border border-2 bg-dark text-white rounded border-dark p-3 w-25 h-75 justify-content-center align-items-center" style="margin-top: 7rem;">
+        {% csrf_token %}
         <h3 class="bi bi-person-fill"> Register User</h3>
         <div class="mb-2">
             <label for="FN" class="form-label">First Name</label>
@@ -49,11 +50,15 @@
         <div class="mb-2">
             <label for="mail">Email</label>
             <input type="email" name="mail" class="form-control">
+            
+            <label for="pass">Password</label>
+            <input type="password" name="pass" class="form-control">
+            
         </div>
         <div class="mb-2">
             <label for="MN" class="form-label">Mobile Number</label>
             <div>
-                <input type="number" class="form-control" name="MN">
+                <input type="tel" class="form-control" name="MN">
             </div>
         </div>
         <div class="mb-2">

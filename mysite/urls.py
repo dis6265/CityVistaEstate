@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from mysite import views
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
 #    , path('course/',views.course) ,
@@ -25,11 +26,12 @@ urlpatterns = [
 #    path('course/<int:str>',views.courseDetails),django
 #    path('course/<int:slug>',views.courseDetails),#about-us-or-me//value with dash
 #   path('course/<id>',views.courseDetails) #any type of value
-   path('',views.homepage),
+    path('',views.homepage),
     path('login/',views.login),
-    path('Registration/',views.registration),
-     path('about-us/',views.aboutUs),
-      path('service/',views.service),
+    # path('Registration/',views.registration),
+    path('about-us/',views.aboutUs),
+    path('service/',views.service),
+    path('Registration/',views.userform)
 
 ]
 

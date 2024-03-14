@@ -38,11 +38,11 @@
        <a href="#" class="fa-solid fa-user m-2"></a>
     </div> 
 </nav>
-    <form class="border border-2 text-white rounded  p-3 w-25 h-50 bg-dark border-dark justify-content-center align-items-center" style="margin-top: 10rem;">
-    
+    <form method="post" class="border border-2 text-white rounded  p-3 w-25 h-50 bg-dark border-dark justify-content-center align-items-center" style="margin-top: 10rem;">
+    {% csrf_token %}
      <h3 class="bi bi-person-fill">Login</h3>
         <div class="mb-3">
-            <label for="UserName" class="form-label">User Name</label>
+            <label for="UserName" class="form-label" >User Name</label>
             <div>
                 <input type="text" class="form-control" name="UserName">
             </div>
@@ -54,12 +54,14 @@
             </div>
         </div>
         <div>
-          <button class="btn btn-light w-100">login</button>
+          <button type="submit" class="btn btn-light w-100" >login</button>
       </div>
       <div>
         <br>
           <p>If don't have an account
           <a href="./Registration.html" >Register </a></p></div>
+          output
+          <input type="text" value"{{output}}"/>
      </form>
 </body>
 </html>
