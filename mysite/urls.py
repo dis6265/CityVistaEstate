@@ -27,7 +27,7 @@ urlpatterns = [
 #    path('course/<int:slug>',views.courseDetails),#about-us-or-me//value with dash
 #   path('course/<id>',views.courseDetails) #any type of value
     path('',views.homepage),
-    path('login/',views.login),
+    path('login/',views.loginform),
     # path('Registration/',views.registration),
     path('about-us/',views.aboutUs),
     path('service/',views.service),

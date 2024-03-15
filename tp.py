@@ -1,3 +1,31 @@
+'''#Program for obtaining Col Names of table
+#OracleColNamesEx2.py
+import cx_Oracle
+def getcolnames():
+    try:
+        con = cx_Oracle.connect("system/manager@localhost/xe")
+        cur = con.cursor()
+        cur.execute("select * from employee")
+        #Code for getting Col names
+        print("============================")
+        for colname in [metadata[0] for  metadata in cur.description]:
+            print(colname,end="\t")
+        print()
+        print("============================")
+        #Code for getting Records
+        records=cur.fetchall()
+        for record in records:
+            for val in record:
+                print("{}".format(val),end="\t")
+            print()
+        print("============================")
+    except cx_Oracle.DatabaseError as db:
+        print("Problem Oracle DB:",db)
+
+#main program
+getcolnames()'''
+
+
 from django.http import HttpResponse
 from django.shortcuts import render
 import mysql.connector as sql
@@ -60,9 +88,9 @@ def loginform(request):
         cursor=obj.cursor()
         d=request.POST
         for key,value in d.items():
-            if key=="UserName":
+            if key=="mail":
                 lem=value
-            if key=="Password":
+            if key=="pass":
                 lpwd=value
         c="select * from users where email='{}' and password='{}'".format(lem, lpwd)    
         cursor.execute(c)
@@ -71,11 +99,13 @@ def loginform(request):
         print("Empty {}".format(t))
         if t==():
              print("Empty {}".format(t))
+
              return render(request, 'internalfiles/login.html',{'form':d,'error_massage':'invalid email or password. Please re-enter'})
             # return render(request,"internalfiles/services.html")
         else:
             print("Empty {}".format(t))
-            return render(request,"internalfiles/services.html")
+            return render(request, 'welcome.html')
+            #return render(request,"internalfiles/services.html")
     return render(request,"internalfiles/login.html",{'output':em})
 
 '''def homepage(request):
@@ -91,7 +121,3 @@ def loginform(request):
     }
     
     return render(request,"index2.html",data)'''
-
-
-
-    

@@ -40,6 +40,9 @@
 </nav>
     <form method="post" class="border border-2 text-white rounded  p-3 w-25 h-50 bg-dark border-dark justify-content-center align-items-center" style="margin-top: 10rem;">
     {% csrf_token %}
+    {% if error_massage %}
+      <p style="color:red">{{error_massage}}</p>
+    {% endif %}
      <h3 class="bi bi-person-fill">Login</h3>
         <div class="mb-3">
             <label for="UserName" class="form-label" >User Name</label>
@@ -60,8 +63,6 @@
         <br>
           <p>If don't have an account
           <a href="./Registration.html" >Register </a></p></div>
-          output
-          <input type="text" value"{{output}}"/>
      </form>
 </body>
 </html>
