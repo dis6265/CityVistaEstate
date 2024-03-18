@@ -37,8 +37,11 @@
         </div> 
     </nav>
 
-    <form  method="post" class="border border-2 bg-dark text-white rounded border-dark p-3 w-25 h-75 justify-content-center align-items-center" style="margin-top: 7rem;">
+    <form  method="post" class="border border-2 bg-dark text-white rounded border-dark p-3 w-25  justify-content-center align-items-center" style="margin-top: 7rem; height: 90%">
         {% csrf_token %}
+        {% if error_massage %}
+      <p style="color:red">{{error_massage}}</p>
+        {% endif %}
         <h3 class="bi bi-person-fill"> Register User</h3>
         <div class="mb-2">
             <label for="FN" class="form-label">First Name</label>
@@ -89,7 +92,7 @@
         </div>
         <div>
             <br>
-          <p>Already have an Account <a href="./login.html">Login</a></div></p>
+          <p>Already have an Account <a href="/login">Login</a></div></p>
           
           <!-- <p>Already have an Account <a href="./login.html" class="btn link bg-primary text-white">Login</a></div></p>
      -->

@@ -45,27 +45,36 @@
     {% endif %}
      <h3 class="bi bi-person-fill">Login</h3>
         <div class="mb-3">
-            <label for="UserName" class="form-label" >User Name</label>
+            <label for="UserName" class="form-label">Email</label>
             <div>
-                <input type="text" class="form-control" name="UserName">
+                <input type="text" class="form-control" name="UserName"  id="un">
             </div>
         </div>
         <div class="mb-3">
             <label for="Password" class="form-label">Password</label>
             <div>
-                <input type="password" class="form-control"  name="Password">
+                <input type="password" class="form-control"  name="Password"  id="pw">
             </div>
         </div>
         <div>
-          <button type="submit" class="btn btn-light w-100" >login</button>
+          <button type="submit"  class="btn btn-light w-100" >login</button>
       </div>
       <div>
         <br>
           <p>If don't have an account
           <a href="./Registration.html" >Register </a></p></div>
      </form>
+
+     <script>
+      function login(){
+        var un=document.getElementById("un").value = '';
+        var pw=document.getElementById("pw").value = '';
+      }
+     </script>
 </body>
 </html>
+
+
 
 <!-- <!DOCTYPE html>
 <html lang="en">

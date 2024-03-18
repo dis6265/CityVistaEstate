@@ -26,12 +26,12 @@ urlpatterns = [
 #    path('course/<int:str>',views.courseDetails),django
 #    path('course/<int:slug>',views.courseDetails),#about-us-or-me//value with dash
 #   path('course/<id>',views.courseDetails) #any type of value
-    path('',views.homepage),
-    path('login/',views.loginform),
+    path('',views.homepage,name="home"),
+    path('login/',views.loginform,name='login'),
     # path('Registration/',views.registration),
-    path('about-us/',views.aboutUs),
-    path('service/',views.service),
-    path('Registration/',views.userform)
+    path('about-us/',views.aboutUs,name="about-us"),
+    path('service/',views.service,name="service"),
+    path('Registration/',views.userform, name="Registration")
 
 ]
 

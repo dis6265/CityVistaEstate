@@ -1,6 +1,7 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import mysql.connector as sql
+from django.db import IntegrityError
 
 def homepage(request):
     return render(request,"index2.html")
@@ -46,10 +47,22 @@ def userform(request):
                 mn=value
             if key=="City":
                 ct=value
-        c="insert into users Values('{}','{}','{}','{}','{}','{}')".format(fn,ln,em,pwd,mn,ct)
-        cursor.execute(c)
-        obj.commit()
-    
+
+        try:
+            c="insert into users Values('{}','{}','{}','{}','{}','{}')".format(fn,ln,em,pwd,mn,ct)
+            cursor.execute(c)
+            obj.commit()
+        except :
+            return render(request, 'internalfiles/Registration.html',{'form':d,'error_massage':'This email is already registered. please login'})
+
+        # try:
+        #     c="insert into users Values('{}','{}','{}','{}','{}','{}')".format(fn,ln,em,pwd,mn,ct)
+        #     cursor.execute(c)
+        #     obj.commit()
+
+        # except:
+            
+        return redirect('login')
     return render(request,"internalfiles/Registration.html")
 
 
@@ -72,10 +85,11 @@ def loginform(request):
         if t==():
              print("Empty {}".format(t))
              return render(request, 'internalfiles/login.html',{'form':d,'error_massage':'invalid email or password. Please re-enter'})
-            # return render(request,"internalfiles/services.html")
+    
         else:
             print("Empty {}".format(t))
-            return render(request,"internalfiles/services.html")
+            return redirect('service')
+            # return render(request,"internalfiles/services.html")
     return render(request,"internalfiles/login.html",{'output':em})
 
 '''def homepage(request):
