@@ -31,7 +31,13 @@ urlpatterns = [
     # path('Registration/',views.registration),
     path('about-us/',views.aboutUs,name="about-us"),
     path('service/',views.service,name="service"),
-    path('Registration/',views.userform, name="Registration")
+    path('Registration/',views.userform, name="Registration"),
+    path('is/',views.iss, name="is"),
+    path('service/rooms' , views.rooms, name="room"),
+    path('service/Building' , views.Building, name="Building"),
+    path('service/House' , views.House, name="House"),
+    path('service/Villas' , views.Villas, name="Villas"),
+
 
 ]
 

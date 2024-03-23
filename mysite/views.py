@@ -19,6 +19,24 @@ def aboutUs(request):
     # return HttpResponse("welcome to mysite")
     return render(request,"internalfiles/about-us.html")
 
+def iss(request):
+    # return redirect('is')
+    return render(request,"internalfiles/is.html")
+
+def rooms(request):
+    return render(request,"internalfiles/rooms.html")
+
+
+def Villas(request):
+    return render(request,"internalfiles/Villas.html")
+
+def Building(request):
+    return render(request,"internalfiles/Building.html")
+
+def House(request):
+    return render(request,"internalfiles/House.html")
+
+
 
 fn=''
 ln=''
