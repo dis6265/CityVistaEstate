@@ -1,5 +1,4 @@
-{% load static %}
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,7 +9,7 @@
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css"
      integrity="sha384-BY+fdrpOd3gfeRvTSMT+VUZmA728cfF9Z2G42xpaRkUGu2i3DyzpTURDo5A6CaLK" crossorigin="anonymous">
-    <link rel="stylesheet" href="/static/is.css">
+    <link rel="stylesheet" href="../static/is.css">
     <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
 
@@ -36,10 +35,8 @@
           <button type="button"> <a href="#"></a> List your property</button>                
           <button type="button" > <a href="#"></a> Takes on rent </button>            
       </div> 
-      
-      
       <div>       
-          <input type="checkbox" id="check" />
+          <input type="checkbox" id="check"/>
           <div class="btn_one">
             <label for="check" style="color:black">
               <i class="fa-solid fa-bars"></i>
@@ -87,66 +84,24 @@
             <a href="#"><i class="fa-brands fa-youtube"></i></a>
           </ul>
         </div>
-  
       </div>     
     </header> 
 
     <section class="container-fluid sidebar">
-      <div class="room">Room </div>
-      <div class="villa">Villa </div>
-      <div class="house">House </div>
-      <div class="build">Build </div>
+      <div style="text-align: center; text-decoration: solid; color: brown; margin-top: 10%; font-weight: bolder;">Services</div>
+      <div style="text-align: center; height: 200px; display: flex; flex-direction: column;">
+        <span class="room "><a href="/service/rooms">Rooms</a>  </span>
+        <span class="villa"><a href="/service/Villas">Villas</a>  </span>
+        <span class="house"><a href="/service/House">House</a>  </span>
+        <span class="build"> <a href="/service/Building">Building</a> </span>
+      </div>
 
-      <h1>hello</h1>
     </section>
 
-    <!-- <div class="Pages navbar-collapse col-8">
-        <ul class="navbar-nav fw-bolder">
-            <li class="nav-item mx-3 "> <a class="nav-link" href="index2.html">Home</a> </li>
-            <li class="nav-item mx-3"> <a class="nav-link" href="internalfiles/login.html">Login</a> </li>
-            <li class="nav-item mx-3"> <a class="nav-link" href="internalfiles/Registration.html">Registration</a> </li>
-            <li class="nav-item mx-3"> <a class="nav-link" href="internalfiles/services.html">Service</a> </li>
-            <li class="nav-item mx-3"> <a class="nav-link" href="about-us.html">About-us</a> </li>
-            <li class="nav-item mx-3"> <a class="nav-link">Contact</a> </li>
-    </div>  -->
 
-<!-- <nav class="sidebar_menu">
-        <div class="sidebar_menu">--> 
-        <!-- <div >
-            <div class="btn_two">
-                <label for="check" style="color:brown">
-                  <i class="fa-solid fa-xmark"></i>
-                </label>
-            </div>
+    <main class="main-content">
 
-            <div class="logo">
-                <a href="#">City Vista Estate</a>
-            </div>
-      
- 
-            <div>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li> <a href="#">About</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-            </div>
-        </div>
-    </nav>
-
-    <div class="content">
-     Your main content here 
-    </div>
- <div class="container-fluid">
-        <div class="side bg-black">
-            <h1>one</h1>
-        </div>
-
-        <div class="main bg-body-secondary ">
-            <h1>Two</h1>
-        </div>
-    </div> -->
+    </main>
 
  </body>
 </html> 
