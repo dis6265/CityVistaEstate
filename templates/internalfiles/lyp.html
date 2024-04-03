@@ -1,0 +1,60 @@
+{% include "internalfiles/is.html" %}
+
+
+<main class="main-content container-fluid  ms-3 justify-content-around align-items-center" style="background-color: wheat ">
+  {% block content %}
+
+      <h1>Upload Image</h1>
+      <div style="margin-top:0;" >
+            <form action="{% url 'upload_image' %}" method="post" enctype="multipart/form-data"  class="border border-2 bg-dark text-white rounded border-dark p-3 w-100  justify-content-center align-items-center" style=" height: 90%; ">
+                {% csrf_token %}
+                <lable for="Oname">Enter Your Name : </lable><br>
+                <input id="Oname" required><br><br>
+
+                  <h3>Share your Property Images</h3>
+                <label for="image">Choose an image:</label><br>
+                <input type="file" id="image" name="image" accept="image/*" required><br><br>
+
+                <label for="image">Choose an image:</label><br>
+                <input type="file" id="image" name="image" accept="image/*" ><br><br>
+
+                <label for="image">Choose an image:</label><br>
+                <input type="file" id="image" name="image" accept="image/*" ><br><br>
+
+                <label for="image">Choose an image:</label><br>
+                <input type="file" id="image" name="image" accept="image/*" ><br><br>
+
+                <lable for="address">Location Or Address of Your Property :</lable><br>
+                <input id="address" required>  <br><br>
+
+                <lable for="ss" >Shared Space</lable>
+                
+
+                <lable for="rent">Rent/month </lable><br>
+                <input id="rent"><br><br>
+
+                <lable for="avail">Availablity</lable> <br>
+                <select name="alb" class="form-select" required>
+                  <option>1 Month</option>
+                  <option>2 Month</option>
+                  <option>6 Month</option>
+                </select> <br><br>
+
+                <select name="type" class="form-select"  required>
+                  <option disabled selected>Choose Property Type</option>
+                  <option>Rooms</option>
+                  <option>Flat</option>
+                  <option>Villa</option>
+                  <option> Building or Apartment</option>
+                  
+                 
+                </select>
+
+                <label for="description">Description:</label><br>
+                <textarea id="description" name="description" rows="4" cols="50" required> Enter your terms and Conditions</textarea><br><br>
+                <input type="submit" value="Upload">
+            </form>
+      </div>
+ 
+  {% endblock  %}
+</main> 

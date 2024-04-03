@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -31,64 +31,65 @@
       alt="logo" style="background-color: brown; color: wheat; border-radius: 50%;
             border-style: solid; position: relative; left: 20px;" >          
         
-      <div class="align-items-end">
-          <button type="button"> <a href="#"></a> List your property</button>                
-          <button type="button" > <a href="#"></a> Takes on rent </button>            
-      </div> 
-      <div>       
-          <input type="checkbox" id="check"/>
-          <div class="btn_one">
-            <label for="check" style="color:black">
-              <i class="fa-solid fa-bars"></i>
-            </label>
-          </div>
-      </div> 
+          <div class="align-items-end">
+              <button type="submit" > <a href="/service/listyp" > List your property</a></button>                
+              <button type="submit" > <a href="/service/taker" >Takes on rent</a> </button>            
+          </div> 
+                    
+          <div>       
+              <input type="checkbox" id="check"/>
+              <div class="btn_one">
+                <label for="check" style="color:black">
+                  <i class="fa-solid fa-bars"></i>
+                </label>
+              </div>
+          </div> 
                
-      <div class="sidebar_menu">
-        <div class="logo">
-          <a href="#" style="color: brown;">City Vista Estate</a>
-        </div>
+          <div class="sidebar_menu">
+                <div class="logo">
+                    <a href="#" style="color: brown;">City Vista Estate</a>
+                </div>
 
-        <div class="btn_two">
-          <label for="check" style="color: rgb(3, 3, 3)">
-            <i class="fa-solid fa-xmark"></i>
-          </label>
-        </div>
-              
-        <div class="menu">
-          <ul>
-            <li>
-              <i class="fa-solid fa-house"></i>
-              <a href="#">Home</a>
-            </li>
-            <li>
-              <i class="fa-solid fa-address-card"></i>
-              <a href="#">About</a>
-            </li>
-            <li>
-              <i class="fa-solid fa-circle-info"></i>
-              <a href="#">Services</a>
-            </li>
-            <li>
-              <i class="fa-solid fa-phone"></i>
-              <a href="#">Contact</a>
-            </li>      
-          </ul>
-        </div>
+                <div class="btn_two">
+                    <label for="check" style="color: rgb(3, 3, 3)">
+                      <i class="fa-solid fa-xmark"></i>
+                    </label>
+                </div>
+                  
+                <div class="menu">
+                      <ul>
+                            <li>
+                              <i class="fa-solid fa-house"></i>
+                              <a href="#">Home</a>
+                            </li>
+                            <li>
+                              <i class="fa-solid fa-address-card"></i>
+                              <a href="#">About</a>
+                            </li>
+                            <li>
+                              <i class="fa-solid fa-circle-info"></i>
+                              <a href="#">Services</a>
+                            </li>
+                            <li>
+                              <i class="fa-solid fa-phone"></i>
+                              <a href="#">Contact</a>
+                            </li>      
+                      </ul>
+                </div>
 
-        <div class="social_media">
-          <ul>
-            <a href="#"><i class="fa-brands fa-facebook"></i></i></a>
-            <a href="#"><i class="fa-brands fa-twitter"></i></a>
-            <a href="#"><i class="fa-brands fa-instagram"></i></i></a>
-            <a href="#"><i class="fa-brands fa-youtube"></i></a>
-          </ul>
-        </div>
-      </div>     
+                <div class="social_media">
+                      <ul>
+                            <a href="#"><i class="fa-brands fa-facebook"></i></i></a>
+                            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#"><i class="fa-brands fa-instagram"></i></i></a>
+                            <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                      </ul>
+                </div>
+          </div>     
     </header> 
 
-    <section class="container-fluid sidebar">
-      <div style="text-align: center; text-decoration: solid; color: brown; margin-top: 10%; font-weight: bolder;">Services</div>
+    <section class="container-fluid sidebar " style=" height:800px; position:fix;">
+      <div style="text-align: center; text-decoration: solid; color: brown; margin-top: 20px; font-weight: bolder; ">Services</div>
       <div style="text-align: center; height: 200px; display: flex; flex-direction: column;">
         <span class="room "><a href="/service/rooms">Rooms</a>  </span>
         <span class="villa"><a href="/service/Villas">Villas</a>  </span>
@@ -98,10 +99,13 @@
 
     </section>
 
+    {% comment %} <main>
+      {% block content %}
+          
+          
+      {% endblock  %}
+    </main> {% endcomment %}
 
-    <main class="main-content">
-
-    </main>
 
  </body>
 </html> 

@@ -1,0 +1,25 @@
+ *********make a service*********
+ python manage.py startapp service
+
+  python manage.py makemigrations
+   python manage.py migrate
+
+
+ascending-----> servicesData=Service.objects.all().order_by('service_title')
+deascending------> servicesData=Service.objects.all().order_by('-service_title')
+
+servicesData=Service.objects.all().order_by('id')---->i means according to posted date
+
+
+setting.py---->
+MEDIA_ROOT = BASE_DIR /"media"
+MEDIA_URL = "/media/"
+
+url---->from django.conf import settings
+from django.conf.urls.static import static
+
+if settings.DEBUG:
+    urlpatterns+=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+    

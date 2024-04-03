@@ -2,8 +2,14 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 import mysql.connector as sql
 from django.db import IntegrityError
+from service.models import Service
+
+from django.views.decorators.cache import never_cache
+
+@never_cache
 
 def homepage(request):
+    
     return render(request,"index2.html")
 
 ''' def login(request):
@@ -36,6 +42,29 @@ def Building(request):
 def House(request):
     return render(request,"internalfiles/House.html")
 
+def listyourproprty(request):
+    return render(request,"internalfiles/lyp.html" )
+
+def takeonrent(request):
+    servicesData=Service.objects.all()
+    data={
+        'servicesData':servicesData   
+    }   
+    return render(request,"internalfiles/tor.html", data)
+
+
+def upload_image(request):
+    if request.method == 'POST':
+        image = request.FILES['image']
+        description = request.POST['description']
+        Service.objects.create(service_img=image, service_des=description)
+        return redirect('display_images')
+    return render(request, 'internalfiles/tor.html')
+
+def display_images(request):
+    images = Service.objects.all()
+    return redirect('tor')
+    return render(request, 'internalfiles/tor.html', {'images': images})
 
 
 fn=''

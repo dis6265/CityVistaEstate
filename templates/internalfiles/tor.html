@@ -1,0 +1,59 @@
+
+
+{% include "internalfiles/is.html" %}
+
+
+<main class="main-content container-fluid ms-3 d-flex flex-wrap">
+  {% block content %}
+
+    {% for n in servicesData  %}
+    {% comment %} <div>
+      <div>
+          <i class="{{n.service_icon}}"></i>
+          <h1><a href='#'> {{n.service_title}}</h1>
+          <p>{{n.service_des}}</p>
+          <div class="img-fluid">
+                <img src="\media\{{n.service_img}}"style="height:250px; width:250px;">
+              <!--  <img src="\media\service\450cc568e65111eca6ab0a58a9feac02.webp"> -->
+          </div>
+        </div>
+    </div> {% endcomment %}
+
+
+    <div class="card p-1 m-2" style="width: 300px;">
+      <div class="card-header" style="background-color: wheat;  ">
+          <h5 class="card-title text-center fw-bold">Rooms on Rent</h5>
+      </div>
+      <div class="card-body">
+          <img src="\media\{{n.service_img}}" class="card-img-top">
+      </div>
+      <div class="card-body">
+        <p>{{n.service_des}}</p>
+      </div>
+      <div class="card-footer">
+           <button class="btn btn-primary w-100 bi bi-cart4" > <a href="/service/rooms">See More</a> </button>  {% comment %} changes {% endcomment %}
+      </div>
+  </div>
+    {% endfor %}
+  {% endblock  %}
+
+
+<!-- display.html -->
+<!--  <h1>Uploaded Images</h1>
+  {% if images %}
+    <ul>
+    {% for image in images %}
+        <li>
+            <img src="{{ image.image.url }}" alt="{{ image.description }}">
+            <p>{{ image.description }}</p>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No images uploaded yet.</p>
+{% endif %}  -->
+
+
+
+
+</main> 
