@@ -9,23 +9,27 @@
             <form action="{% url 'upload_image' %}" method="post" enctype="multipart/form-data"  class="border border-2 bg-dark text-white rounded border-dark p-3 w-100  justify-content-center align-items-center" style=" height: 90%; ">
                 {% csrf_token %}
                 <lable for="Oname">Enter Your Name : </lable><br>
-                <input id="Oname" required><br><br>
+                <input id="Oname" name="Oname" required><br><br>
 
                   <h3>Share your Property Images</h3>
                 <label for="image">Choose an image:</label><br>
                 <input type="file" id="image" name="image" accept="image/*" required><br><br>
 
-                <label for="image">Choose an image:</label><br>
-                <input type="file" id="image" name="image" accept="image/*" ><br><br>
+                <label for="image1">Choose an image:</label><br>
+                <input type="file" id="image1" name="image1" accept="image/*" ><br><br>
 
-                <label for="image">Choose an image:</label><br>
-                <input type="file" id="image" name="image" accept="image/*" ><br><br>
+                <label for="image2">Choose an image:</label><br>
+                <input type="file" id="image2" name="image2" accept="image/*" ><br><br>
 
-                <label for="image">Choose an image:</label><br>
-                <input type="file" id="image" name="image" accept="image/*" ><br><br>
+                <label for="image3">Choose an image:</label><br>
+                <input type="file" id="image3" name="image3" accept="image/*" ><br><br>
 
                 <lable for="address">Location Or Address of Your Property :</lable><br>
-                <input id="address" required>  <br><br>
+                <input id="address" name="address" required>  <br><br>
+
+                <div id="map" style="width: 100%; height: 400px;" ></div>
+                <input type="hidden" id="latitude" name="latitude">
+                <input type="hidden" id="longitude" name="longitude">
 
                 <lable for="ss" >Shared Space</lable>
                 
@@ -40,7 +44,7 @@
                   <option>6 Month</option>
                 </select> <br><br>
 
-                <select name="type" class="form-select"  required>
+                <select name="type" class="form-select" id="type" required>
                   <option disabled selected>Choose Property Type</option>
                   <option>Rooms</option>
                   <option>Flat</option>
@@ -51,10 +55,108 @@
                 </select>
 
                 <label for="description">Description:</label><br>
-                <textarea id="description" name="description" rows="4" cols="50" required> Enter your terms and Conditions</textarea><br><br>
+                <textarea id="description" name="description" rows="4" cols="50" placeholder="Enter your terms and Conditions" required> </textarea><br><br>
                 <input type="submit" value="Upload">
             </form>
       </div>
- 
+      
+
+      <script src="https://unpkg.com/leaflet/dist/leaflet.js" ></script>
+      <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    
+      <script>
+        var map = L.map('map').setView([0, 0], 15);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: ' <a href="https://www.openstreetmap.org/copyright"> <!--OpenStreetMap --></a> <!-- contributors-->'
+        }).addTo(map);
+    
+        var marker = L.marker([0, 0], { draggable: true }).addTo(map);
+    
+        function onMarkerDragEnd(event) {
+          var marker = event.target;
+          var position = marker.getLatLng();
+          marker.setLatLng(position, { draggable: 'true' }).update();
+          map.panTo(new L.LatLng(position.lat, position.lng));
+          document.getElementById('latitude').value = position.lat;
+          document.getElementById('longitude').value = position.lng;
+          getAddress(position.lat, position.lng);
+        }
+        marker.on('dragend', onMarkerDragEnd);
+    
+        // Event listener for map click
+        map.on('click', function (e) {
+          var position = e.latlng;
+          marker.setLatLng(position);
+          document.getElementById('latitude').value = position.lat;
+          document.getElementById('longitude').value = position.lng;
+          getAddress(position.lat, position.lng);
+      });
+
+
+        // Function to get address from coordinates using Nominatim API
+        function getAddress(lat, lng) {
+          fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`)
+            .then(response => response.json())
+            .then(data => {
+              document.getElementById('address').value = data.display_name;
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    
+        // Function to handle address input change
+        document.getElementById('address').addEventListener('change', function () {
+          var address = this.value;
+          fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${address}`)
+            .then(response => response.json())
+            .then(data => {
+              if (data && data.length > 0) {
+                var lat = parseFloat(data[0].lat);
+                var lon = parseFloat(data[0].lon);
+                var position = [lat, lon];
+                marker.setLatLng(position).update();
+                map.panTo(new L.LatLng(lat, lon));
+                document.getElementById('latitude').value = lat;
+                document.getElementById('longitude').value = lon;
+              }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+
+         // Function to submit form data
+         document.getElementById('uploadForm').addEventListener('submit', function (event) {
+          // Prevent default form submission
+          event.preventDefault();
+          // Submit the form data
+          submitFormData();
+      });
+
+      function submitFormData() {
+          var form = document.getElementById('uploadForm');
+          var formData = new FormData(form);
+          // Send form data to the backend using AJAX
+          fetch(form.action, {
+              method: 'POST',
+              body: formData,
+              headers: {
+                  'X-CSRFToken': '{{ csrf_token }}' // Include CSRF token in headers
+              }
+          })
+              .then(response => {
+                  if (response.ok) {
+                      // Reset the form after successful submission
+                      form.reset();
+                      // Optionally, display a success message to the user
+                      console.log('Form submitted successfully');
+                  } else {
+                      console.error('Form submission failed');
+                  }
+              })
+              .catch(error => console.error('Error:', error));
+      }
+      </script>
+    
+    <!-- Load the Google Maps JavaScript API -->
+    {% comment %} <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACcfnZWOlOV8Gp3LfCZMAz3WVaHtZq7Cg&callback=initMap"></script> {% endcomment %}
   {% endblock  %}
 </main> 
+

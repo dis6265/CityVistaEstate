@@ -4,6 +4,8 @@ import mysql.connector as sql
 from django.db import IntegrityError
 from service.models import Service
 
+import googlemaps
+
 from django.views.decorators.cache import never_cache
 
 @never_cache
@@ -55,10 +57,42 @@ def takeonrent(request):
 
 def upload_image(request):
     if request.method == 'POST':
-        image = request.FILES['image']
-        description = request.POST['description']
-        Service.objects.create(service_img=image, service_des=description)
-        return redirect('display_images')
+        # Oname = request.POST['Oname']
+        # image = request.FILES['image']
+        # image1 = request.FILES['image1'].name
+        # image2 = request.FILES['image2'].name
+        # image3 = request.FILES['image3'].name
+        # type = request.POST['type'].name
+        # description = request.POST['description']
+
+        try:
+            Oname = request.POST['Oname']
+            image = request.FILES['image']
+            image1 = request.FILES.get('image1')
+            image2 = request.FILES.get('image2')
+            image3 = request.FILES.get('image3')
+            service_type = request.POST.get('type')
+            description = request.POST['description']
+            address = request.POST.get('address')
+            latitude = request.POST.get('latitude')  # Assuming latitude and longitude are being submitted in the form
+            longitude = request.POST.get('longitude')
+
+
+            Service.objects.create(
+                service_name=Oname,
+                service_img=image,
+                service_img1=image1,
+                service_img2=image2,
+                service_img3=image3,
+                service_type=service_type,
+                service_des=description,
+                service_address=address,
+                latitude=latitude,
+                longitude=longitude)
+            return redirect('display_images')
+        except Exception as e:
+            return HttpResponse(f"An error occurred: {e}")
+
     return render(request, 'internalfiles/tor.html')
 
 def display_images(request):
