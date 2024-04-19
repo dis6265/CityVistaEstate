@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 import mysql.connector as sql
 from django.db import IntegrityError
 from service.models import Service
-
+import re
 import googlemaps
 
 from django.views.decorators.cache import never_cache
@@ -56,15 +56,7 @@ def takeonrent(request):
 
 
 def upload_image(request):
-    if request.method == 'POST':
-        # Oname = request.POST['Oname']
-        # image = request.FILES['image']
-        # image1 = request.FILES['image1'].name
-        # image2 = request.FILES['image2'].name
-        # image3 = request.FILES['image3'].name
-        # type = request.POST['type'].name
-        # description = request.POST['description']
-
+    if request.method == 'POST': 
         try:
             Oname = request.POST['Oname']
             image = request.FILES['image']
@@ -77,7 +69,8 @@ def upload_image(request):
             latitude = request.POST.get('latitude')  # Assuming latitude and longitude are being submitted in the form
             longitude = request.POST.get('longitude')
 
-
+            # main_area = address.split(',')[0].strip()
+            
             Service.objects.create(
                 service_name=Oname,
                 service_img=image,
@@ -87,12 +80,14 @@ def upload_image(request):
                 service_type=service_type,
                 service_des=description,
                 service_address=address,
+                # service_ad=main_area,
                 latitude=latitude,
                 longitude=longitude)
             return redirect('display_images')
         except Exception as e:
             return HttpResponse(f"An error occurred: {e}")
 
+    # return render(request, 'internalfiles/tor.html')
     return render(request, 'internalfiles/tor.html')
 
 def display_images(request):
@@ -126,6 +121,9 @@ def userform(request):
                 pwd=value
             if key=="MN":
                 mn=value
+                if not re.match(r'^[6-9]\d{9}$', value):
+                    return render(request, 'internalfiles/Registration.html', {'form': d, 'Mobile_number_error_message': 'Invalid mobile number.'})
+                
             if key=="City":
                 ct=value
 
@@ -136,12 +134,6 @@ def userform(request):
         except :
             return render(request, 'internalfiles/Registration.html',{'form':d,'error_massage':'This email is already registered. please login'})
 
-        # try:
-        #     c="insert into users Values('{}','{}','{}','{}','{}','{}')".format(fn,ln,em,pwd,mn,ct)
-        #     cursor.execute(c)
-        #     obj.commit()
-
-        # except:
             
         return redirect('login')
     return render(request,"internalfiles/Registration.html")

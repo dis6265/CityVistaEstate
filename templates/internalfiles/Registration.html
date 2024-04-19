@@ -42,6 +42,9 @@
         {% if error_massage %}
       <p style="color:red">{{error_massage}}</p>
         {% endif %}
+        {% comment %} {% if Mobile_number_error_message %}
+      <p style="color:red">{{Mobile_number_error_message}}</p>
+        {% endif %} {% endcomment %}
         <h3 class="bi bi-person-fill"> Register User</h3>
         <div class="mb-2">
             <label for="FN" class="form-label">First Name</label>
@@ -62,6 +65,9 @@
             <label for="MN" class="form-label">Mobile Number</label>
             <div>
                 <input type="tel" class="form-control" name="MN" required>
+                {% if Mobile_number_error_message %}
+                <p style="color:red">{{ Mobile_number_error_message }}</p>
+                {% endif %}
             </div>
         </div> 
         <div class="mb-2">
